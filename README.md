@@ -12,7 +12,7 @@
 - **Deformation Zone**: 介在物周辺に形成される不均一な変形領域
 - **Rotated Zone**: 格子回転が局所的に発生する領域で、再結晶挙動（PSN効果）に寄与
 
-図1は、冷間圧延されたアルミニウム合金AA3003中のα-Al(Mn, Fe)Si粒子の周辺に形成されるdeformation zoneを光学顕微鏡で観察したものである[1]。この図は粒子のアスペクト比が異なる場合（(a) 1.0：球形、(b)(c) 2.0および4.0：長楕円体）を示しており、圧延方向に伴う粒子周辺の変形構造を比較している。
+図1は、冷間圧延されたアルミニウム合金AA3003中のα-Al(Mn, Fe)Si粒子の周辺に形成されるdeformation zoneを光学顕微鏡で観察したものです[1]。この図は粒子のアスペクト比が異なる場合（(a) 1.0：球形、(b)(c) 2.0および4.0：長楕円体）を示しており、圧延方向に伴う粒子周辺の変形を比較しています。
 
 本プロジェクトでは、これらの変形領域の形成メカニズムを明らかにし、介在物形状が与える影響を定量的に予測することを目的としています。
 
@@ -39,16 +39,19 @@
 出力のサンプルとして、以下にRD方向における応力分布の結果を載せます。
 （条件: ヤング率比 = 3.0、ポアソン比 = 0.33、初期内部塑性ひずみ [-0.5, 0, 0.5, 0, 0, 0]、球形状介在物）
 
-<div style="display: flex; align-items: center;">
-  <div style="text-align: center; margin-right: 20px;">
-    <p>マイクロメカニクス解析</p>
-    <img src="data/matlab_sample.jpg" alt="内部応力分布-MATLAB" width="300">
-  </div>
-  <div style="text-align: center; margin-left: 20px;">
-    <p>有限要素解析</p>
-    <img src="data/fem_sample.png" alt="内部応力分布-FEM" width="300">
-  </div>
-</div>
+<table>
+  <tr>
+    <td style="text-align: center;">
+      <p>マイクロメカニクス解析</p>
+      <img src="data/matlab_sample.jpg" alt="内部応力分布-MATLAB" width="300">
+    </td>
+    <td style="text-align: center;">
+      <p>有限要素解析</p>
+      <img src="data/fem_sample.png" alt="内部応力分布-FEM" width="300">
+    </td>
+  </tr>
+</table>
+
 
 
 ## 主な結果
