@@ -2,78 +2,66 @@
 
 このプロジェクトでは、金属複合材料における楕円体介在物が内部応力場と応力緩和に与える影響をマイクロメカニクス解析を用いて検討します。特に、Eshelbyの等価介在物法を用いて、母相および介在物周辺の内部応力や変形形状を解析します。
 
-
-
-![図1. 光学顕微鏡による冷間圧延されたアルミニウム合金 AA3003 のα-Al(Mn, Fe)Si 粒子周辺の deformation zone 観察[1]. 粒子のアスペクト比 (a)1.0（球）, (b)(c)2.0, 4.0（長楕円体）.](/workspaces/eia/utils/data/1-s2.0-S0167663621000946-gr1_lrg.jpg)
+<div style="display: flex; align-items: center; margin-top: 20px;">
+  <div style="text-align: center;">
+    <p>光学顕微鏡による観察</p>
+    <img src="data/1-s2.0-S0167663621000946-gr1_lrg.jpg" alt="光学顕微鏡観察" width="600">
+  </div>
+</div>
 
 - **Deformation Zone**: 介在物周辺に形成される不均一な変形領域
 - **Rotated Zone**: 格子回転が局所的に発生する領域で、再結晶挙動（PSN効果）に寄与
+
+図1は、冷間圧延されたアルミニウム合金AA3003中のα-Al(Mn, Fe)Si粒子の周辺に形成されるdeformation zoneを光学顕微鏡で観察したものである[1]。この図は粒子のアスペクト比が異なる場合（(a) 1.0：球形、(b)(c) 2.0および4.0：長楕円体）を示しており、圧延方向に伴う粒子周辺の変形構造を比較している。
 
 本プロジェクトでは、これらの変形領域の形成メカニズムを明らかにし、介在物形状が与える影響を定量的に予測することを目的としています。
 
 ## 特徴
 
 - Eshelbyの等価介在物法を用いたマイクロメカニクス解析の実装
-- 球形および特定のアスペクト比を持つ楕円体介在物に対応
-- Pythonを使用した数値解析により、柔軟かつ拡張性の高い設計
+- 球形状および回転楕円体介在物に対する内部応力場と変形形状の検討
 
 ## 方法
 
 ### 応力解析
-- 介在物と母相の弾性ひずみミスマッチをモデル化
-- Eigenひずみの分布と応力緩和効果を解析
-
-#### 重要な数式
-内部応力場および変形形状の解析には以下のEshelbyの等価介在物法に基づく数式を用います：
-
-\[
-\sigma_{ij} = C_{ijkl} (	ilde{arepsilon}_{kl} - \Deltaarepsilon_{kl}^{p})
-\]
-
-ここで、\( \sigma_{ij} \) は内部応力、\( C_{ijkl} \) は弾性コンプライアンステンソル、\( 	ilde{arepsilon}_{kl} \) は等価ひずみ、\( \Deltaarepsilon_{kl}^{p} \) は塑性ひずみのミスマッチです。
-
-さらに、内側Eshelbyテンソル、外側Eshelbyテンソル、変位Eshelbyテンソルに基づいた以下の数式も重要です：
-
-- **内側Eshelbyテンソル**：
-\[
-	ilde{arepsilon}_{ij} = S_{ijkl}^{	ext{in}} \Deltaarepsilon_{kl}
-\]
-ここで、\( S_{ijkl}^{	ext{in}} \) は内側Eshelbyテンソルを表し、介在物内部の応力とひずみの関係を記述します。
-
-- **外側Eshelbyテンソル**：
-\[
-\sigma_{ij}^{	ext{out}} = C_{ijkl} S_{klmn}^{	ext{out}} \Deltaarepsilon_{mn}
-\]
-ここで、\( S_{klmn}^{	ext{out}} \) は外側Eshelbyテンソルを表し、介在物外部の応力場を記述します。
-
-- **変位Eshelbyテンソル**：
-\[
- u_i = W_{ijkl} \Deltaarepsilon_{kl}
-\]
-ここで、\( W_{ijkl} \) は変位Eshelbyテンソルを表し、介在物周辺の変位場を記述します。
-
-これらのテンソルを用いることで、介在物と母相の弾性応答をより詳細に解析できます。
+- 介在物と母相の塑性ひずみミスマッチをモデル化
+- Eigenひずみのキャンセルすることで、応力緩和効果を解析
 
 ### シミュレーション設定
 
-- 各種アスペクト比の介在物を対象とした解析（球形、プロレート楕円体、オブレート楕円体）
+- 各種アスペクト比の介在物を対象とした解析（球、回転楕円体）
 - Eigenひずみを希釈・再分布させることで塑性緩和領域をシミュレート
 
 ### 検証
 
-- 有限要素法（FEA）および実験データとの比較による結果の妥当性確認
+- 有限要素法（FEA）および実験データとの比較による結果の妥当性を確認
+
+出力のサンプルとして、以下にRD方向における応力分布の結果を載せます。
+（条件: ヤング率比 = 3.0、ポアソン比 = 0.33、初期内部塑性ひずみ [-0.5, 0, 0.5, 0, 0, 0]、球形状介在物）
+
+<div style="display: flex; align-items: center;">
+  <div style="text-align: center; margin-right: 20px;">
+    <p>マイクロメカニクス解析</p>
+    <img src="data/matlab_sample.jpg" alt="内部応力分布-MATLAB" width="300">
+  </div>
+  <div style="text-align: center; margin-left: 20px;">
+    <p>有限要素解析</p>
+    <img src="data/fem_sample.png" alt="内部応力分布-FEM" width="300">
+  </div>
+</div>
+
 
 ## 主な結果
 
 - 介在物のアスペクト比が増加すると、応力や変形が局所化し、顕著になることを確認
-- 塑性領域の安定形状が特定され、観察されたRotated Zoneと一致
 - AA3003アルミニウム合金におけるDeformation Zoneの観察結果と整合性を確認
+- 塑性領域の安定形状が特定され、観察されたRotated Zoneと類似
 
 ## 使用方法
 
 ### 必要条件
 
-- Python 3.8以上
+- Python 3.10以上
 - `requirements.txt`に記載された依存ライブラリ
 
 ### インストール手順
@@ -96,7 +84,8 @@
 
 ## プロジェクトの進捗状況
 
-本プロジェクトは、大学院修士時代にMATLABで構築した数値解析プログラムを基にしています。現在、これをPythonに移行し、より汎用性の高い成果物を目指して開発を進めています。一部の解析機能については移行途中ですが、順次Pythonでの完全実装を目指しています。
+本プロジェクトは、大学院修士時代にMATLABで構築した数値解析プログラムを基にしています。
+現在途中ではありますが、順次Pythonでの完全移植を目指しています。
 
 ## Pythonに移行している理由
 
@@ -108,7 +97,6 @@ MATLABからPythonに移行する理由は以下の通りです：
 
 ## 参考文献
 
-- Humphreys, F. J., Acta Metallurgica, 1977.
-- Park, S. J., and Muraishi, S., Mechanics of Materials, 2021.
-- Jin, X. et al., Journal of Applied Mechanics, 2016.
+[1] Park, S.J. and Muraishi, S., 2021. Micromechanical analysis of residual stress around coarse
+precipitates under cold rolling conditions. Mechanics of Materials, 157, p.103841.
 
