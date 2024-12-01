@@ -1,0 +1,32 @@
+[project]
+name = "EIA"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=1.5.3", # Data manipulation and storage
+    "pyyaml>=6.0",
+    "pytest>=8.3.3",
+    "uvicorn>=0.32.0",
+    "numpy>=1.24.0", # For numerical computations
+    "matplotlib>=3.7.0", # For plotting and visualization
+    "scipy>=1.11.0" # For scientific computations
+]
+
+[tool.uv]
+dev-dependencies = [
+    "bump2version>=1.0.1",  # For managing version numbers
+    "ipykernel>=6.29.5",  # To support Jupyter notebooks
+    "jupyter>=1.1.1",  # Jupyter notebooks for exploratory work
+    "pre-commit>=3.8.0",  # For git hooks to ensure code quality
+    "ruff>=0.6.7",  # Linting for maintaining code quality
+    "pytest>=7.2.0",  # For running tests
+]
+
+[tool.ruff]
+ignore = ["E731", "F841", "F821", "E741"]  # Custom linting rules to ignore certain checks
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["webseekly"]

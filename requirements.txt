@@ -1,0 +1,8 @@
+numpy
+matplotlib
+scipy
+pytest
+mypy
+black
+jupyter
+unittest
